@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chúc Mừng 20/10 - Dành Tặng Người Anh Yêu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,600;1,400&family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --crimson-dark: #220309;
+            --crimson-mid: #4a0613;
+            --rose-bright: #e11d48;
+            --gold-light: #fef08a;
+            --gold-rich: #eab308;
+            --cream-paper: #fffdf9;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #4c0519 0%, #25020b 55%, #0f0104 100%);
+            font-family: 'Be Vietnam Pro', sans-serif;
+            color: #fff;
+        }
+
+        .font-script {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .font-serif-luxury {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Ambient vignette & golden glow */
+        .ambient-glow {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 50%, rgba(225, 29, 72, 0.18) 0%, transparent 65%),
+                radial-gradient(circle at 50% 50%, transparent 45%, rgba(5, 0, 2, 0.78) 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Procedural Rose Border & Wreath Animations */
+        @keyframes swaySlow {
+
+            0%,
+            100% {
+                transform: rotate(var(--base-rot, 0deg)) scale(var(--base-scale, 1)) translate(0px, 0px);
+            }
+
+            50% {
+                transform: rotate(calc(var(--base-rot, 0deg) + 4.5deg)) scale(calc(var(--base-scale, 1) * 1.04)) translate(2px, -3px);
+            }
+        }
+
+        @keyframes pulseBloom {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 8px rgba(225, 29, 72, 0.25));
+            }
+
+            50% {
+                filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 18px rgba(244, 63, 94, 0.55));
+            }
+        }
+
+        .rose-item {
+            position: absolute;
+            transform-origin: center center;
+            animation: swaySlow var(--sway-dur, 6s) ease-in-out infinite;
+            animation-delay: var(--sway-delay, 0s);
+            will-change: transform;
+        }
+
+        .rose-interactive {
+            pointer-events: auto;
+            cursor: pointer;
+            transition: filter 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .rose-interactive:hover {
+            filter: drop-shadow(0 0 22px rgba(251, 113, 133, 0.9)) brightness(1.18) !important;
+            z-index: 40 !important;
+        }
+
+        /* 3D Envelope & Luxury Card Container */
+        .stage-perspective {
+            perspective: 1600px;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 380px;
+            height: 260px;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        @media (max-width: 640px) {
+            .envelope-wrapper {
+                width: 310px;
+                height: 215px;
+            }
+        }
+
+        .envelope-wrapper:hover:not(.is-open) {
+            transform: translateY(-8px) rotateX(6deg) scale(1.03);
+        }
+
+        /* Envelope Back */
+        .envelope-back {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #7f1d1d, #450a0a);
+            border-radius: 16px;
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.85),
+                0 0 40px rgba(225, 29, 72, 0.45),
+                inset 0 0 25px rgba(254, 240, 138, 0.2);
+            border: 2px solid rgba(234, 179, 8, 0.55);
+            overflow: hidden;
+        }
+
+        /* Envelope Inner Fold Pocket */
+        .envelope-pocket {
+            position: absolute;
+            inset: 0;
+            z-index: 12;
+            pointer-events: none;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .envelope-pocket::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(165deg, #991b1b 0%, #650915 55%, #3b040c 100%);
+            clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%);
+            border-bottom: 2px solid rgba(254, 240, 138, 0.5);
+        }
+
+        .envelope-pocket::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(127, 29, 29, 0.95), rgba(153, 27, 27, 0.75));
+            clip-path: polygon(0 100%, 50% 44%, 100% 100%);
+            box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Gold Filigree Trim on Envelope */
+        .gold-trim {
+            position: absolute;
+            inset: 10px;
+            border: 1px dashed rgba(253, 224, 71, 0.45);
+            border-radius: 11px;
+            pointer-events: none;
+            z-index: 13;
+        }
+
+        /* Top Flap of Envelope */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(180deg, #b91c1c 0%, #7f1d1d 100%);
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top center;
+            transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.3s;
+            z-index: 15;
+            filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.45));
+        }
+
+        .envelope-flap::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            clip-path: polygon(2% 2%, 98% 2%, 50% 95%);
+            border-top: 1px solid rgba(254, 240, 138, 0.5);
+        }
+
+        .envelope-wrapper.is-open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 4;
+        }
+
+        /* Wax Seal Button */
+        .wax-seal {
+            position: absolute;
+            top: 53%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #fb7185, #e11d48 45%, #881337 85%, #4c0519 100%);
+            box-shadow:
+                0 6px 20px rgba(0, 0, 0, 0.7),
+                0 0 25px rgba(251, 113, 133, 0.75),
+                inset 0 2px 6px rgba(255, 255, 255, 0.45),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.6);
+            border: 2.5px solid #fde047;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+            animation: sealPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes sealPulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), 0 0 20px rgba(251, 113, 133, 0.6);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                box-shadow: 0 8px 28px rgba(0, 0, 0, 0.8), 0 0 36px rgba(253, 224, 71, 0.85);
+            }
+        }
+
+        .envelope-wrapper.is-open .wax-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.2);
+            pointer-events: none;
+        }
+
+        /* Letter Preview Slip inside Envelope */
+        .letter-preview {
+            position: absolute;
+            left: 6%;
+            right: 6%;
+            bottom: 8%;
+            height: 84%;
+            background: linear-gradient(to bottom, #fffdf9, #fce7f3);
+            border-radius: 10px;
+            z-index: 8;
+            border: 1px solid #f9a8d4;
+            transition: transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 18px;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        .envelope-wrapper.is-open .letter-preview {
+            transform: translateY(-120px) scale(1.04);
+        }
+
+        /* Full Expanded Romantic Card Modal */
+        .expanded-card-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: rgba(15, 1, 5, 0.68);
+            backdrop-filter: blur(6px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+        }
+
+        .expanded-card-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .luxury-card-paper {
+            position: relative;
+            width: 100%;
+            max-width: 610px;
+            max-height: 86vh;
+            background:
+                radial-gradient(circle at top right, rgba(254, 205, 211, 0.45), transparent 55%),
+                radial-gradient(circle at bottom left, rgba(254, 240, 138, 0.25), transparent 55%),
+                linear-gradient(180deg, #fffdf9 0%, #fff5f7 100%);
+            color: #4a0414;
+            border-radius: 24px;
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.9),
+                0 0 55px rgba(225, 29, 72, 0.6),
+                inset 0 0 0 2px #eab308,
+                inset 0 0 0 7px #fffdf9,
+                inset 0 0 0 9px rgba(225, 29, 72, 0.35);
+            transform: scale(0.75) translateY(40px) rotateX(12deg);
+            transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+            overflow-y: auto;
+            overflow-x: hidden;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        .expanded-card-backdrop.active .luxury-card-paper {
+            transform: scale(1) translateY(0) rotateX(0deg);
+        }
+
+        /* Custom Scrollbar for Card */
+        .luxury-card-paper::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .luxury-card-paper::-webkit-scrollbar-thumb {
+            background: rgba(225, 29, 72, 0.35);
+            border-radius: 999px;
+        }
+
+        /* Shimmering Gold Text */
+        .gold-shimmer {
+            background: linear-gradient(90deg, #fef08a 0%, #f59e0b 35%, #fffbeb 50%, #f59e0b 65%, #fef08a 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shineText 4s linear infinite;
+        }
+
+        @keyframes shineText {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Typewriter cursor */
+        .typing-cursor::after {
+            content: '|';
+            display: inline-block;
+            color: #e11d48;
+            animation: blinkCursor 0.8s infinite;
+            margin-left: 2px;
+            font-weight: bold;
+        }
+
+        @keyframes blinkCursor {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Floating Central Wreath Aura */
+        .wreath-glow {
+            position: absolute;
+            width: 520px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.42) 0%, rgba(136, 19, 55, 0.15) 55%, transparent 75%);
+            filter: blur(20px);
+            pointer-events: none;
+            animation: breatheAura 4s ease-in-out infinite;
+        }
+
+        @keyframes breatheAura {
+
+            0%,
+            100% {
+                transform: scale(0.96);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.07);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="relative flex items-center justify-center min-h-screen overflow-hidden select-none">
+
+    <!-- MASTER SVG DEFINITIONS: High-detail multi-layered velvet red roses, buds, and lush leaves -->
+    <svg width="0" height="0" class="absolute hidden" aria-hidden="true">
+        <defs>
+            <!-- Deep Velvet Outer Gradients -->
+            <radialGradient id="rose-velvet-deep" cx="40%" cy="35%" r="70%">
+                <stop offset="0%" stop-color="#e11d48" />
+                <stop offset="45%" stop-color="#9f1239" />
+                <stop offset="80%" stop-color="#4c0519" />
+                <stop offset="100%" stop-color="#27010b" />
+            </radialGradient>
+
+            <radialGradient id="rose-velvet-mid" cx="35%" cy="30%" r="65%">
+                <stop offset="0%" stop-color="#fb7185" />
+                <stop offset="35%" stop-color="#e11d48" />
+                <stop offset="75%" stop-color="#881337" />
+                <stop offset="100%" stop-color="#3b0210" />
+            </radialGradient>
+
+            <radialGradient id="rose-velvet-bright" cx="45%" cy="35%" r="60%">
+                <stop offset="0%" stop-color="#ffe4e6" />
+                <stop offset="22%" stop-color="#fb7185" />
+                <stop offset="60%" stop-color="#be123c" />
+                <stop offset="100%" stop-color="#65061d" />
+            </radialGradient>
+
+            <radialGradient id="rose-core-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fef08a" />
+                <stop offset="30%" stop-color="#f43f5e" />
+                <stop offset="70%" stop-color="#881337" />
+                <stop offset="100%" stop-color="#2e010b" />
+            </radialGradient>
+
+            <linearGradient id="gold-edge" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fef08a" stop-opacity="0.8" />
+                <stop offset="50%" stop-color="#eab308" stop-opacity="0.3" />
+                <stop offset="100%" stop-color="#ca8a04" stop-opacity="0" />
+            </linearGradient>
+
+            <!-- Rich Emerald / Dark Romantic Leaf Gradient -->
+            <linearGradient id="leaf-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#15803d" />
+                <stop offset="45%" stop-color="#14532d" />
+                <stop offset="85%" stop-color="#052e16" />
+                <stop offset="100%" stop-color="#02170a" />
+            </linearGradient>
+
+            <linearGradient id="leaf-vein" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#86efac" stop-opacity="0.55" />
+                <stop offset="100%" stop-color="#166534" stop-opacity="0.1" />
+            </linearGradient>
+
+            <!-- 1. LUSH MULTI-LAYERED BLOOMING RED ROSE -->
+            <g id="grand-red-rose">
+                <!-- Outer Shadow Base Petals -->
+                <path d="M0,-48 C26,-52 48,-28 46,0 C48,28 24,49 0,47 C-25,49 -48,26 -46,0 C-49,-26 -24,-51 0,-48 Z"
+                    fill="url(#rose-velvet-deep)" />
+
+                <!-- 5 Large Outer Velvet Petals -->
+                <path d="M0,-46 C18,-54 38,-36 32,-12 C28,5 12,12 0,0 C-12,12 -28,5 -32,-12 C-38,-36 -18,-54 0,-46 Z"
+                    fill="url(#rose-velvet-mid)" stroke="url(#gold-edge)" stroke-width="0.6" />
+                <path d="M44,-12 C55,4 42,32 18,32 C2,32 -5,16 0,0 C14,-6 32,-26 44,-12 Z" fill="url(#rose-velvet-deep)"
+                    stroke="url(#gold-edge)" stroke-width="0.5" />
+                <path d="M26,38 C14,54 -16,52 -26,36 C-34,20 -16,6 0,0 C14,6 36,22 26,38 Z" fill="url(#rose-velvet-mid)"
+                    stroke="url(#gold-edge)" stroke-width="0.6" />
+                <path d="M-44,-10 C-55,8 -40,34 -18,32 C-4,30 4,14 0,0 C-14,-8 -32,-26 -44,-10 Z"
+                    fill="url(#rose-velvet-deep)" stroke="url(#gold-edge)" stroke-width="0.5" />
+                <path d="M-28,-38 C-46,-26 -46,6 -26,18 C-12,24 0,10 0,0 C0,-14 -12,-48 -28,-38 Z"
+                    fill="url(#rose-velvet-mid)" />
+
+                <!-- Mid Layer Cupped Petals (Rotated & Folded) -->
+                <path d="M0,-34 C22,-38 36,-16 26,8 C18,24 -18,24 -26,8 C-36,-16 -22,-38 0,-34 Z"
+                    fill="url(#rose-velvet-bright)" opacity="0.92" />
+                <path d="M28,-18 C38,0 28,26 6,28 C-14,30 -26,12 -18,-8 C-12,-24 18,-34 28,-18 Z"
+                    fill="url(#rose-velvet-mid)" />
+                <path d="M-26,-14 C-34,6 -20,28 2,26 C22,24 28,2 16,-14 C6,-28 -18,-30 -26,-14 Z"
+                    fill="url(#rose-velvet-bright)" stroke="url(#gold-edge)" stroke-width="0.7" />
+
+                <!-- Inner Velvet Whorls -->
+                <path d="M0,-22 C16,-24 24,-6 14,10 C4,22 -16,18 -18,2 C-20,-12 -12,-20 0,-22 Z"
+                    fill="url(#rose-velvet-mid)" />
+                <path d="M14,-10 C20,2 12,16 -2,16 C-14,16 -18,2 -10,-8 C-2,-18 8,-20 14,-10 Z"
+                    fill="url(#rose-velvet-bright)" stroke="url(#gold-edge)" stroke-width="0.6" />
+
+                <!-- Tight Spiral Rose Heart -->
+                <path d="M-2,-11 C8,-13 13,-2 6,6 C0,12 -10,8 -9,-1 C-8,-8 -4,-10 2,-7 C6,-4 4,3 -1,3"
+                    fill="url(#rose-core-glow)" stroke="#fda4af" stroke-width="0.9" stroke-linecap="round" />
+                <!-- Dewdrop highlight -->
+                <circle cx="-14" cy="-16" r="2.2" fill="#fff" opacity="0.75" />
+                <circle cx="-14.6" cy="-16.6" r="0.9" fill="#fef08a" />
+            </g>
+
+            <!-- 2. ROMANTIC ROSEBUD WITH CALYX -->
+            <g id="velvet-rosebud">
+                <!-- Green Sepals -->
+                <path d="M0,18 C-12,12 -18,-4 -14,-16 C-8,-6 -4,4 0,14 Z" fill="url(#leaf-emerald)" />
+                <path d="M0,18 C12,12 18,-4 14,-16 C8,-6 4,4 0,14 Z" fill="url(#leaf-emerald)" />
+                <!-- Bud Petals -->
+                <path d="M0,-24 C14,-20 18,2 0,16 C-18,2 -14,-20 0,-24 Z" fill="url(#rose-velvet-deep)" />
+                <path d="M-2,-22 C10,-16 12,4 0,14 C-10,6 -10,-14 -2,-22 Z" fill="url(#rose-velvet-bright)"
+                    stroke="url(#gold-edge)" stroke-width="0.6" />
+                <path d="M3,-18 C8,-10 6,4 -1,10 C-6,2 -2,-12 3,-18 Z" fill="url(#rose-velvet-mid)" />
+            </g>
+
+            <!-- 3. SERRATED ROSE LEAF PAIR -->
+            <g id="rose-leaf">
+                <path d="M0,0 C14,-18 38,-22 52,-4 C38,14 16,16 0,0 Z" fill="url(#leaf-emerald)" stroke="#052e16"
+                    stroke-width="0.8" />
+                <path d="M0,0 C18,-4 34,-4 49,-4" stroke="url(#leaf-vein)" stroke-width="1.3" fill="none"
+                    stroke-linecap="round" />
+                <path d="M16,-3 L24,-10 M26,-4 L34,-9 M18,-2 L26,4 M30,-3 L37,3" stroke="url(#leaf-vein)"
+                    stroke-width="0.9" fill="none" stroke-linecap="round" />
+            </g>
+        </defs>
+    </svg>
+
+    <!-- Background Falling Rose Petals & Golden Sparkles Canvas -->
+    <canvas id="petal-canvas" class="fixed inset-0 pointer-events-none z-10"></canvas>
+
+    <!-- Ambient Romantic Spotlight & Vignette -->
+    <div class="ambient-glow"></div>
+
+    <!-- LAYER 1: Overflowing Outer Viewport Perimeter Rose Garland (Generated dynamically on load/resize) -->
+    <div id="outer-rose-garland" class="fixed inset-0 pointer-events-none z-20 overflow-hidden"></div>
+
+    <!-- Top Floating Controls Bar (Sound, Customize, Docker Guide) -->
+    <header
+        class="fixed top-3 sm:top-5 left-0 right-0 z-40 px-4 flex items-center justify-between max-w-6xl mx-auto pointer-events-none">
+        <div
+            class="flex items-center gap-2 bg-rose-950/80 backdrop-blur-md border border-amber-400/40 px-3.5 py-1.5 rounded-full shadow-lg pointer-events-auto">
+            <span class="inline-block w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+            <span class="text-xs sm:text-sm font-medium text-amber-100 tracking-wide">Happy Vietnamese Women's Day •
+                20/10</span>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-2.5 pointer-events-auto">
+            <!-- Music Synthesizer Toggle -->
+            <button id="btn-music" onclick="toggleRomanticMusic()" title="Bật/Tắt nhạc nền lãng mạn"
+                class="flex items-center gap-1.5 bg-rose-950/85 hover:bg-rose-900 text-amber-200 border border-amber-400/50 px-3 py-2 rounded-full text-xs sm:text-sm font-medium shadow-lg transition transform active:scale-95">
+                <span id="music-icon">🔇</span>
+                <span id="music-label" class="hidden sm:inline">Nhạc nền</span>
+            </button>
+
+            <!-- Customize Content Modal Trigger -->
+            <button onclick="openCustomizeModal()" title="Chỉnh sửa lời chúc & tên người nhận"
+                class="flex items-center gap-1.5 bg-amber-500/90 hover:bg-amber-400 text-rose-950 font-semibold px-3.5 py-2 rounded-full text-xs sm:text-sm shadow-lg transition transform active:scale-95">
+                <span>✍️</span>
+                <span>Tùy chỉnh thiệp</span>
+            </button>
+
+
+        </div>
+    </header>
+
+    <!-- LAYER 2: Central Interactive Stage (Bed of Red Roses + 3D Envelope) -->
+    <main class="relative z-30 flex flex-col items-center justify-center w-full h-full px-4">
+
+        <!-- Romantic Title Above the Rose Nest -->
+        <div class="text-center mb-6 sm:mb-9 relative z-30 pointer-events-none">
+            <p class="text-xs sm:text-sm uppercase tracking-[0.35em] text-amber-300/90 mb-1 drop-shadow">Món Quà Nhỏ Gửi
+                Ngàn Yêu Thương</p>
+            <h1
+                class="font-script text-4xl sm:text-6xl font-bold gold-shimmer drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] py-1">
+                Happy Women's Day 20/10
+            </h1>
+        </div>
+
+        <!-- Central Nest of Roses + Envelope -->
+        <div class="relative flex items-center justify-center stage-perspective my-2">
+            <!-- Soft Crimson Glow Behind Central Wreath -->
+            <div class="wreath-glow"></div>
+
+            <!-- Dense Central Rose Wreath Frame (30+ tightly clustered roses around the envelope) -->
+            <div id="central-rose-wreath"
+                class="absolute inset-0 flex items-center justify-center pointer-events-none z-10"></div>
+
+            <!-- Interactive 3D Envelope Nestled Inside the Roses -->
+            <div id="envelope-card" class="envelope-wrapper z-20" onclick="handleEnvelopeOpen()">
+                <!-- Back of Envelope -->
+                <div class="envelope-back"></div>
+
+                <!-- Top Opening Flap -->
+                <div class="envelope-flap"></div>
+
+                <!-- Inner Letter Preview Slip -->
+                <div class="letter-preview">
+                    <span class="text-[11px] uppercase tracking-widest text-rose-500 font-semibold">Thư Tình
+                        20/10</span>
+                    <p id="envelope-recipient-preview"
+                        class="font-script text-2xl sm:text-3xl text-rose-900 mt-1 font-bold">
+                        Gửi Em Yêu...
+                    </p>
+                    <div class="w-16 h-0.5 bg-gradient-to-r from-transparent via-rose-400 to-transparent my-1.5"></div>
+                    <p class="text-[11px] text-rose-700/80 italic px-4 text-center">
+                        "Giữa ngàn đóa hồng đỏ thắm, em vẫn là bông hoa rực rỡ nhất..."
+                    </p>
+                </div>
+
+                <!-- Front Pocket Fold -->
+                <div class="envelope-pocket"></div>
+                <div class="gold-trim"></div>
+
+                <!-- Pulsing Heart Wax Seal -->
+                <div class="wax-seal" title="Nhấn để mở thiệp">
+                    <div class="text-center leading-none">
+                        <span class="text-2xl block drop-shadow">❤️</span>
+                        <span class="text-[9px] font-bold uppercase tracking-wider text-amber-200 block mt-0.5">Mở
+                            Thiệp</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call-to-action instruction pill below the rose nest -->
+        <div class="mt-9 sm:mt-12 z-30 text-center">
+            <button onclick="handleEnvelopeOpen()"
+                class="group inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-gradient-to-r from-rose-700 via-rose-600 to-rose-700 hover:from-rose-600 hover:to-rose-500 text-amber-100 font-medium text-sm sm:text-base shadow-[0_0_25px_rgba(225,29,72,0.7)] border border-amber-300/60 transition transform hover:scale-105 active:scale-95">
+                <span class="text-lg group-hover:scale-125 transition-transform">🌹</span>
+                <span id="cta-button-text">Nhấn vào phong bì hoa hồng để mở thiệp</span>
+                <span class="text-lg group-hover:scale-125 transition-transform">✨</span>
+            </button>
+            <p class="text-[11px] sm:text-xs text-rose-200/75 mt-2">
+                Mẹo: Chạm vào những bông hoa hồng xung quanh để bung tỏa cánh hoa lãng mạn
+            </p>
+        </div>
+    </main>
+
+    <!-- LAYER 3: Expanded Ornate Love Letter Modal (Opens when Envelope is clicked) -->
+    <div id="expanded-card-modal" class="expanded-card-backdrop" onclick="handleBackdropClick(event)">
+        <div class="luxury-card-paper p-6 sm:p-10 relative">
+
+            <!-- Decorative Corner SVG Roses Inside the Letter -->
+            <svg class="w-16 h-16 sm:w-20 sm:h-20 absolute -top-2 -left-2 pointer-events-none opacity-95"
+                viewBox="-60 -60 120 120">
+                <use href="#rose-leaf" transform="rotate(25) scale(0.95)" />
+                <use href="#rose-leaf" transform="rotate(70) scale(0.85)" />
+                <use href="#grand-red-rose" transform="scale(0.85)" />
+            </svg>
+            <svg class="w-16 h-16 sm:w-20 sm:h-20 absolute -top-2 -right-2 pointer-events-none opacity-95"
+                viewBox="-60 -60 120 120">
+                <use href="#rose-leaf" transform="rotate(115) scale(0.95)" />
+                <use href="#rose-leaf" transform="rotate(155) scale(0.85)" />
+                <use href="#grand-red-rose" transform="scale(0.85)" />
+            </svg>
+            <svg class="w-16 h-16 sm:w-20 sm:h-20 absolute -bottom-2 -left-2 pointer-events-none opacity-95"
+                viewBox="-60 -60 120 120">
+                <use href="#rose-leaf" transform="rotate(-35) scale(0.9)" />
+                <use href="#grand-red-rose" transform="scale(0.8)" />
+            </svg>
+            <svg class="w-16 h-16 sm:w-20 sm:h-20 absolute -bottom-2 -right-2 pointer-events-none opacity-95"
+                viewBox="-60 -60 120 120">
+                <use href="#rose-leaf" transform="rotate(-145) scale(0.9)" />
+                <use href="#grand-red-rose" transform="scale(0.8)" />
+            </svg>
+
+            <!-- Close Button -->
+            <button onclick="closeExpandedCard()" title="Đóng thiệp"
+                class="absolute top-3.5 right-3.5 z-20 w-9 h-9 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-800 flex items-center justify-center font-bold shadow transition">
+                ✕
+            </button>
+
+            <!-- Ornate Header Badge -->
+            <div class="text-center pt-2 pb-4 border-b border-rose-200/80">
+                <div
+                    class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-rose-100 text-rose-800 text-xs font-semibold tracking-widest uppercase mb-2">
+                    <span>🌹</span> Ngày Phụ Nữ Việt Nam 20/10 <span>🌹</span>
+                </div>
+                <h2 id="card-greeting-title"
+                    class="font-script text-3xl sm:text-5xl font-bold text-rose-800 leading-tight">
+                    Gửi Công Chúa Của Anh,
+                </h2>
+            </div>
+
+            <!-- Main Romantic Letter Body (Typewriter Reveal) -->
+            <div class="my-5 sm:my-6 px-1 sm:px-4">
+                <div id="typewriter-body"
+                    class="font-serif-luxury text-base sm:text-lg leading-relaxed text-rose-950/90 whitespace-pre-line min-h-[170px]">
+                </div>
+            </div>
+
+            <!-- Romantic Quote Box & Signature -->
+            <div
+                class="mt-4 pt-4 border-t border-rose-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div
+                    class="bg-rose-50/90 border border-rose-200 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-rose-800 italic text-center sm:text-left">
+                    “Cảm ơn em đã đến và biến mỗi ngày của anh đều ngập tràn hương sắc hoa hồng.”
+                </div>
+
+                <div class="text-center sm:text-right shrink-0">
+                    <p class="text-xs uppercase tracking-wider text-rose-500 font-semibold">Yêu em thật nhiều,</p>
+                    <p id="card-sender-signature"
+                        class="font-script text-2xl sm:text-3xl font-bold text-rose-800 mt-0.5">
+                        Người Yêu Của Em ❤️
+                    </p>
+                </div>
+            </div>
+
+            <!-- Action Buttons Inside Opened Card -->
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <button onclick="triggerRoseExplosion()"
+                    class="px-5 py-2.5 rounded-full bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-semibold text-xs sm:text-sm shadow-md transition transform active:scale-95 flex items-center gap-1.5">
+                    <span>💐</span> Tung Mưa Hoa Hồng & Trái Tim
+                </button>
+                <button onclick="replayTypewriter()"
+                    class="px-4 py-2.5 rounded-full bg-amber-100 hover:bg-amber-200 text-amber-900 font-semibold text-xs sm:text-sm transition flex items-center gap-1.5">
+                    <span>✨</span> Đọc lại hiệu ứng chữ
+                </button>
+                <button onclick="closeExpandedCard()"
+                    class="px-4 py-2.5 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-900 font-medium text-xs sm:text-sm transition">
+                    Gấp thiệp lại
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAYER 4: Customize Card Message & Link Generator Modal -->
+    <div id="customize-modal" class="expanded-card-backdrop" onclick="if(event.target === this) closeCustomizeModal()">
+        <div
+            class="bg-rose-950 border-2 border-amber-400/60 text-amber-50 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeCustomizeModal()"
+                class="absolute top-4 right-4 w-8 h-8 rounded-full bg-rose-900 hover:bg-rose-800 text-amber-200 flex items-center justify-center">✕</button>
+
+            <h3 class="font-serif-luxury text-2xl font-bold text-amber-300 flex items-center gap-2 mb-1">
+                <span>✍️</span> Tùy Chỉnh Nội Dung Thiệp 20/10
+            </h3>
+            <p class="text-xs text-rose-200/80 mb-4">
+                Thay đổi lời chúc dành riêng cho người yêu của bạn. Bạn có thể lưu trực tiếp hoặc copy đường link chứa
+                sẵn lời chúc này.
+            </p>
+
+            <div class="space-y-3.5 text-sm">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-amber-200 mb-1">Tiêu đề gửi
+                        người nhận:</label>
+                    <input id="input-recipient" type="text" placeholder="Ví dụ: Gửi Bảo Ngọc - Công Chúa Của Anh,"
+                        class="w-full px-3.5 py-2 rounded-xl bg-rose-900/70 border border-rose-700 text-white focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-amber-200 mb-1">Nội dung bức
+                        thư tình 20/10:</label>
+                    <textarea id="input-message" rows="6" placeholder="Nhập lời chúc ngọt ngào của bạn..."
+                        class="w-full px-3.5 py-2 rounded-xl bg-rose-900/70 border border-rose-700 text-white focus:outline-none focus:border-amber-400 leading-relaxed"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-amber-200 mb-1">Chữ ký người
+                        gửi:</label>
+                    <input id="input-sender" type="text" placeholder="Ví dụ: Anh Yêu Của Em ❤️"
+                        class="w-full px-3.5 py-2 rounded-xl bg-rose-900/70 border border-rose-700 text-white focus:outline-none focus:border-amber-400">
+                </div>
+            </div>
+
+            <div id="copy-toast"
+                class="hidden mt-3 p-2.5 rounded-xl bg-emerald-900/80 border border-emerald-400 text-emerald-100 text-xs text-center">
+                ✅ Đã cập nhật thiệp và sao chép URL chứa lời chúc vào bộ nhớ tạm!
+            </div>
+
+            <div class="mt-5 flex flex-wrap items-center justify-end gap-2.5">
+                <button onclick="resetDefaultMessage()"
+                    class="px-3.5 py-2 rounded-xl bg-rose-900 hover:bg-rose-800 text-rose-200 text-xs font-medium transition">
+                    Khôi phục mặc định
+                </button>
+                <button onclick="saveAndApplyCustomization()"
+                    class="px-5 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-rose-950 font-bold text-xs sm:text-sm shadow-lg transition">
+                    💖 Lưu & Mở Thiệp Xem Ngay
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        /********************************************************************
+         * 1. CARD STATE & DEFAULT VIETNAMESE 20/10 LOVE MESSAGE
+         ********************************************************************/
+        const DEFAULT_CARD_DATA = {
+            recipient: "Gửi Công Chúa Nhỏ Của Anh,",
+            message: `Nhân ngày Phụ nữ Việt Nam 20/10, anh muốn gửi đến em ngàn đóa hoa hồng đỏ thắm cùng tất cả sự dịu dàng, trân trọng nhất từ tận đáy lòng anh.\n\nCảm ơn em vì đã luôn là ánh nắng ấm áp, là nụ cười rạng rỡ khiến thế giới của anh trở nên tươi đẹp và ý nghĩa hơn mỗi ngày. Giữa muôn vàn bông hoa rực rỡ trên thế gian này, trong mắt anh, em mãi mãi là đóa hồng kiêu sa, ngọt ngào và tuyệt vời nhất.\n\nChúc người con gái anh yêu luôn xinh đẹp, hạnh phúc, bình an và mãi nắm chặt tay anh trên mọi chặng đường phía trước nhé!`,
+            sender: "Người Yêu Của Em ❤️"
+        };
+
+        let cardData = { ...DEFAULT_CARD_DATA };
+        let isEnvelopeOpen = false;
+        let typewriterTimer = null;
+
+        function loadCardDataFromUrlOrStorage() {
+            const params = new URLSearchParams(window.location.search);
+            const r = params.get('to');
+            const m = params.get('msg');
+            const s = params.get('from');
+
+            if (r || m || s) {
+                cardData.recipient = r || DEFAULT_CARD_DATA.recipient;
+                cardData.message = m || DEFAULT_CARD_DATA.message;
+                cardData.sender = s || DEFAULT_CARD_DATA.sender;
+            } else {
+                try {
+                    const saved = localStorage.getItem('love_card_20_10_v2');
+                    if (saved) {
+                        cardData = { ...DEFAULT_CARD_DATA, ...JSON.parse(saved) };
+                    }
+                } catch (e) {
+                    // Ignore storage error
+                }
+            }
+            updateCardStaticText();
+        }
+
+        function updateCardStaticText() {
+            document.getElementById('card-greeting-title').textContent = cardData.recipient;
+            document.getElementById('envelope-recipient-preview').textContent = cardData.recipient;
+            document.getElementById('card-sender-signature').textContent = cardData.sender;
+        }
+
+        /********************************************************************
+         * 2. PROCEDURAL LUSH RED ROSE GARLAND (VIEWPORT BORDER + CENTRAL WREATH)
+         ********************************************************************/
+        function createRoseSVGNode(scale, rotation, includeLeaves = true, isBud = false) {
+            const svgNS = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(svgNS, "svg");
+            svg.setAttribute("viewBox", "-65 -65 130 130");
+            svg.setAttribute("width", "110");
+            svg.setAttribute("height", "110");
+            svg.style.overflow = "visible";
+
+            if (includeLeaves) {
+                const leafCount = isBud ? 1 : 2;
+                for (let i = 0; i < leafCount; i++) {
+                    const leafUse = document.createElementNS(svgNS, "use");
+                    leafUse.setAttribute("href", "#rose-leaf");
+                    const leafAngle = (i === 0 ? -55 : 135) + (Math.random() * 40 - 20);
+                    const leafScale = (0.75 + Math.random() * 0.35).toFixed(2);
+                    leafUse.setAttribute("transform", `rotate(${leafAngle}) scale(${leafScale})`);
+                    svg.appendChild(leafUse);
+                }
+            }
+
+            const roseUse = document.createElementNS(svgNS, "use");
+            roseUse.setAttribute("href", isBud ? "#velvet-rosebud" : "#grand-red-rose");
+            roseUse.setAttribute("transform", `rotate(${rotation})`);
+            svg.appendChild(roseUse);
+
+            return svg;
+        }
+
+        function generateViewportRoseBorder() {
+            const container = document.getElementById('outer-rose-garland');
+            container.innerHTML = '';
+
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            const isMobile = vw < 640;
+
+            // Spacing between roses along the border so there are dozens of overlapping roses
+            const step = isMobile ? 54 : 68;
+            const placements = [];
+
+            // Top & Bottom Edges
+            for (let x = -20; x <= vw + 20; x += step) {
+                // Outer layer & inner staggered layer on top edge
+                placements.push({ x: x + (Math.random() * 16 - 8), y: 12 + Math.random() * 18, layer: 1 });
+                if (!isMobile || x % (step * 2) === 0) {
+                    placements.push({ x: x + step / 2, y: 38 + Math.random() * 16, layer: 2, bud: Math.random() > 0.65 });
+                }
+
+                // Outer layer & inner staggered layer on bottom edge
+                placements.push({ x: x + (Math.random() * 16 - 8), y: vh - 12 - Math.random() * 18, layer: 1 });
+                if (!isMobile || x % (step * 2) === 0) {
+                    placements.push({ x: x + step / 2, y: vh - 40 - Math.random() * 16, layer: 2, bud: Math.random() > 0.65 });
+                }
+            }
+
+            // Left & Right Edges
+            for (let y = step; y < vh - step; y += step) {
+                placements.push({ x: 12 + Math.random() * 18, y: y + (Math.random() * 16 - 8), layer: 1 });
+                if (!isMobile || y % (step * 2) === 0) {
+                    placements.push({ x: 38 + Math.random() * 14, y: y + step / 2, layer: 2, bud: Math.random() > 0.6 });
+                }
+
+                placements.push({ x: vw - 12 - Math.random() * 18, y: y + (Math.random() * 16 - 8), layer: 1 });
+                if (!isMobile || y % (step * 2) === 0) {
+                    placements.push({ x: vw - 38 - Math.random() * 14, y: y + step / 2, layer: 2, bud: Math.random() > 0.6 });
+                }
+            }
+
+            // Extra Lush Corner Clusters
+            const corners = [
+                { cx: 28, cy: 28 },
+                { cx: vw - 28, cy: 28 },
+                { cx: 28, cy: vh - 28 },
+                { cx: vw - 28, cy: vh - 28 }
+            ];
+            corners.forEach(c => {
+                for (let k = 0; k < (isMobile ? 3 : 5); k++) {
+                    const angle = (k / 5) * Math.PI * 2;
+                    const dist = 28 + Math.random() * 42;
+                    placements.push({
+                        x: c.cx + Math.cos(angle) * dist,
+                        y: c.cy + Math.sin(angle) * dist,
+                        layer: 3,
+                        scaleBoost: 1.15
+                    });
+                }
+            });
+
+            placements.forEach((p, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'rose-item rose-interactive';
+
+                const baseScale = (isMobile ? 0.58 : 0.78) * (p.layer === 1 ? 1.05 : 0.82) * (p.scaleBoost || 1);
+                const rot = Math.floor(Math.random() * 360);
+                const swayDur = (4.5 + Math.random() * 3.5).toFixed(2) + 's';
+                const swayDelay = (-Math.random() * 5).toFixed(2) + 's';
+
+                wrapper.style.left = `${p.x - 55}px`;
+                wrapper.style.top = `${p.y - 55}px`;
+                wrapper.style.zIndex = p.layer === 1 ? 22 : (p.layer === 3 ? 25 : 19);
+                wrapper.style.setProperty('--base-rot', `${rot}deg`);
+                wrapper.style.setProperty('--base-scale', baseScale.toFixed(2));
+                wrapper.style.setProperty('--sway-dur', swayDur);
+                wrapper.style.setProperty('--sway-delay', swayDelay);
+                wrapper.style.filter = `drop-shadow(0 6px 12px rgba(0,0,0,0.75))`;
+
+                const svgNode = createRoseSVGNode(baseScale, rot, true, !!p.bud);
+                wrapper.appendChild(svgNode);
+
+                // Clicking any border rose spawns a burst of velvet petals at that flower
+                wrapper.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    spawnPetalBurst(p.x, p.y, 16);
+                });
+
+                container.appendChild(wrapper);
+            });
+        }
+
+        function generateCentralRoseWreath() {
+            const wreath = document.getElementById('central-rose-wreath');
+            wreath.innerHTML = '';
+
+            const isMobile = window.innerWidth < 640;
+            const rx = isMobile ? 172 : 220; // Horizontal oval radius around the envelope
+            const ry = isMobile ? 124 : 155; // Vertical oval radius around the envelope
+            const totalOuter = isMobile ? 22 : 28;
+            const totalInner = isMobile ? 16 : 20;
+
+            // Outer ring of lush roses + leaves around the card
+            for (let i = 0; i < totalOuter; i++) {
+                const angle = (i / totalOuter) * Math.PI * 2;
+                const jitterX = (Math.random() - 0.5) * 18;
+                const jitterY = (Math.random() - 0.5) * 18;
+                const x = Math.cos(angle) * (rx + 18) + jitterX;
+                const y = Math.sin(angle) * (ry + 16) + jitterY;
+
+                const item = document.createElement('div');
+                item.className = 'rose-item rose-interactive';
+                const scale = (isMobile ? 0.55 : 0.72) + Math.random() * 0.15;
+                const rot = Math.round((angle * 180) / Math.PI + 90);
+
+                item.style.left = `calc(50% + ${x - 55}px)`;
+                item.style.top = `calc(50% + ${y - 55}px)`;
+                item.style.setProperty('--base-rot', `${rot}deg`);
+                item.style.setProperty('--base-scale', scale.toFixed(2));
+                item.style.setProperty('--sway-dur', `${4.2 + (i % 4)}s`);
+                item.style.setProperty('--sway-delay', `-${(i * 0.3).toFixed(1)}s`);
+                item.style.filter = 'drop-shadow(0 8px 14px rgba(0,0,0,0.8))';
+
+                item.appendChild(createRoseSVGNode(scale, rot, true, i % 4 === 0));
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const rect = item.getBoundingClientRect();
+                    spawnPetalBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 18);
+                });
+                wreath.appendChild(item);
+            }
+
+            // Inner dense ring hugging the envelope border tightly
+            for (let i = 0; i < totalInner; i++) {
+                const angle = ((i + 0.5) / totalInner) * Math.PI * 2;
+                const x = Math.cos(angle) * (rx - 14);
+                const y = Math.sin(angle) * (ry - 12);
+
+                const item = document.createElement('div');
+                item.className = 'rose-item rose-interactive';
+                const scale = (isMobile ? 0.64 : 0.84) + Math.random() * 0.14;
+                const rot = Math.floor(Math.random() * 360);
+
+                item.style.left = `calc(50% + ${x - 55}px)`;
+                item.style.top = `calc(50% + ${y - 55}px)`;
+                item.style.zIndex = 15;
+                item.style.setProperty('--base-rot', `${rot}deg`);
+                item.style.setProperty('--base-scale', scale.toFixed(2));
+                item.style.setProperty('--sway-dur', `${5 + (i % 3)}s`);
+                item.style.setProperty('--sway-delay', `-${(i * 0.4).toFixed(1)}s`);
+                item.style.filter = 'drop-shadow(0 8px 16px rgba(0,0,0,0.85)) drop-shadow(0 0 10px rgba(225,29,72,0.35))';
+
+                item.appendChild(createRoseSVGNode(scale, rot, true, false));
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const rect = item.getBoundingClientRect();
+                    spawnPetalBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 20);
+                });
+                wreath.appendChild(item);
+            }
+        }
+
+        /********************************************************************
+         * 3. INTERACTIVE 3D ENVELOPE & CARD OPENING LOGIC
+         ********************************************************************/
+        function handleEnvelopeOpen() {
+            const envelope = document.getElementById('envelope-card');
+            const modal = document.getElementById('expanded-card-modal');
+
+            // Start gentle romantic music automatically on first card open if not playing
+            if (!isMusicPlaying && !userMutedMusic) {
+                startRomanticMusic();
+            }
+
+            // Play harp/chime flourish sound
+            playChimeFlourish();
+
+            // Open 3D flap & slide letter preview up
+            envelope.classList.add('is-open');
+            isEnvelopeOpen = true;
+
+            // Burst of velvet petals & hearts from the center of the envelope
+            const rect = envelope.getBoundingClientRect();
+            spawnPetalBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 48);
+
+            // Reveal expanded ornate letter after flap opens
+            setTimeout(() => {
+                modal.classList.add('active');
+                startTypewriterEffect(cardData.message);
+            }, 620);
+        }
+
+        function closeExpandedCard() {
+            const envelope = document.getElementById('envelope-card');
+            const modal = document.getElementById('expanded-card-modal');
+
+            modal.classList.remove('active');
+            if (typewriterTimer) clearInterval(typewriterTimer);
+
+            setTimeout(() => {
+                envelope.classList.remove('is-open');
+                isEnvelopeOpen = false;
+            }, 350);
+        }
+
+        function handleBackdropClick(e) {
+            if (e.target.id === 'expanded-card-modal') {
+                closeExpandedCard();
+            }
+        }
+
+        function startTypewriterEffect(fullText) {
+            const container = document.getElementById('typewriter-body');
+            if (typewriterTimer) clearInterval(typewriterTimer);
+            container.textContent = '';
+            container.classList.add('typing-cursor');
+
+            let index = 0;
+            typewriterTimer = setInterval(() => {
+                if (index < fullText.length) {
+                    container.textContent += fullText.charAt(index);
+                    index++;
+                } else {
+                    clearInterval(typewriterTimer);
+                    container.classList.remove('typing-cursor');
+                }
+            }, 22);
+        }
+
+        function replayTypewriter() {
+            startTypewriterEffect(cardData.message);
+        }
+
+        function triggerRoseExplosion() {
+            playChimeFlourish();
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+            spawnPetalBurst(vw * 0.5, vh * 0.5, 55);
+            spawnPetalBurst(vw * 0.25, vh * 0.4, 28);
+            spawnPetalBurst(vw * 0.75, vh * 0.4, 28);
+        }
+
+        /********************************************************************
+         * 4. CUSTOMIZE MODAL & DOCKER HELPER MODAL
+         ********************************************************************/
+        function openCustomizeModal() {
+            document.getElementById('input-recipient').value = cardData.recipient;
+            document.getElementById('input-message').value = cardData.message;
+            document.getElementById('input-sender').value = cardData.sender;
+            document.getElementById('copy-toast').classList.add('hidden');
+            document.getElementById('customize-modal').classList.add('active');
+        }
+
+        function closeCustomizeModal() {
+            document.getElementById('customize-modal').classList.remove('active');
+        }
+
+        function resetDefaultMessage() {
+            document.getElementById('input-recipient').value = DEFAULT_CARD_DATA.recipient;
+            document.getElementById('input-message').value = DEFAULT_CARD_DATA.message;
+            document.getElementById('input-sender').value = DEFAULT_CARD_DATA.sender;
+        }
+
+        function saveAndApplyCustomization() {
+            const r = document.getElementById('input-recipient').value.trim() || DEFAULT_CARD_DATA.recipient;
+            const m = document.getElementById('input-message').value.trim() || DEFAULT_CARD_DATA.message;
+            const s = document.getElementById('input-sender').value.trim() || DEFAULT_CARD_DATA.sender;
+
+            cardData = { recipient: r, message: m, sender: s };
+            updateCardStaticText();
+
+            try {
+                localStorage.setItem('love_card_20_10_v2', JSON.stringify(cardData));
+            } catch (e) { }
+
+            // Update URL parameters so the user can also share the customized URL directly via Ngrok
+            const url = new URL(window.location.href);
+            url.searchParams.set('to', r);
+            url.searchParams.set('msg', m);
+            url.searchParams.set('from', s);
+            window.history.replaceState({}, '', url.toString());
+
+            // Copy customized link to clipboard
+            const tempInput = document.createElement('textarea');
+            tempInput.value = url.toString();
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+            } catch (err) { }
+            document.body.removeChild(tempInput);
+
+            const toast = document.getElementById('copy-toast');
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                closeCustomizeModal();
+                handleEnvelopeOpen();
+            }, 900);
+        }
+
+        function openDockerModal() {
+            document.getElementById('docker-modal').classList.add('active');
+        }
+
+        function closeDockerModal() {
+            document.getElementById('docker-modal').classList.remove('active');
+        }
+
+        /********************************************************************
+         * 5. HTML5 CANVAS FALLING VELVET PETALS, SPARKLES & TOUCH TRAIL
+         ********************************************************************/
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+        let cw = window.innerWidth;
+        let ch = window.innerHeight;
+
+        const ambientPetals = [];
+        const burstParticles = [];
+        const sparkles = [];
+
+        function resizeCanvas() {
+            cw = window.innerWidth;
+            ch = window.innerHeight;
+            canvas.width = cw;
+            canvas.height = ch;
+        }
+
+        class VelvetPetal {
+            constructor(isInitial = false) {
+                this.reset(isInitial);
+            }
+
+            reset(isInitial = false) {
+                this.x = Math.random() * cw;
+                this.y = isInitial ? Math.random() * ch : -30 - Math.random() * 80;
+                this.size = 9 + Math.random() * 13;
+                this.speedY = 0.7 + Math.random() * 1.4;
+                this.speedX = -0.5 + Math.random() * 1.0;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotSpeed = (Math.random() - 0.5) * 0.03;
+                this.flip = Math.random() * Math.PI;
+                this.flipSpeed = 0.015 + Math.random() * 0.025;
+                this.swayAmp = 0.6 + Math.random() * 1.2;
+                this.swayStep = Math.random() * 100;
+                const shades = ['#e11d48', '#be123c', '#9f1239', '#f43f5e', '#881337'];
+                this.color = shades[Math.floor(Math.random() * shades.length)];
+                this.alpha = 0.72 + Math.random() * 0.25;
+            }
+
+            update() {
+                this.swayStep += 0.02;
+                this.y += this.speedY;
+                this.x += this.speedX + Math.sin(this.swayStep) * this.swayAmp;
+                this.rotation += this.rotSpeed;
+                this.flip += this.flipSpeed;
+
+                if (this.y > ch + 40 || this.x < -60 || this.x > cw + 60) {
+                    this.reset(false);
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.scale(1, Math.max(0.25, Math.abs(Math.cos(this.flip))));
+                ctx.globalAlpha = this.alpha;
+
+                // Draw realistic heart-cupped rose petal shape
+                const s = this.size;
+                ctx.beginPath();
+                ctx.moveTo(0, s * 0.7);
+                ctx.bezierCurveTo(-s * 0.9, s * 0.2, -s * 0.85, -s * 0.85, 0, -s * 0.45);
+                ctx.bezierCurveTo(s * 0.85, -s * 0.85, s * 0.9, s * 0.2, 0, s * 0.7);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        class GoldSparkle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * cw;
+                this.y = Math.random() * ch;
+                this.radius = 1 + Math.random() * 2.2;
+                this.phase = Math.random() * Math.PI * 2;
+                this.speed = 0.02 + Math.random() * 0.04;
+            }
+            update() {
+                this.phase += this.speed;
+                this.y -= 0.18;
+                if (this.y < -10) this.y = ch + 10;
+            }
+            draw() {
+                const alpha = (Math.sin(this.phase) + 1) * 0.45;
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.fillStyle = '#fef08a';
+                ctx.shadowColor = '#facc15';
+                ctx.shadowBlur = 8;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function spawnPetalBurst(x, y, count = 24) {
+            for (let i = 0; i < count; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = 1.5 + Math.random() * 6.5;
+                const isHeart = Math.random() > 0.68;
+                burstParticles.push({
+                    x,
+                    y,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 1.8,
+                    gravity: 0.09 + Math.random() * 0.05,
+                    size: isHeart ? (7 + Math.random() * 8) : (8 + Math.random() * 10),
+                    rot: Math.random() * Math.PI * 2,
+                    rotSpeed: (Math.random() - 0.5) * 0.12,
+                    alpha: 1,
+                    decay: 0.01 + Math.random() * 0.012,
+                    isHeart,
+                    color: isHeart ? '#fb7185' : (Math.random() > 0.4 ? '#e11d48' : '#be123c')
+                });
+            }
+        }
+
+        function drawMiniHeart(x, y, size, rot, color, alpha) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rot);
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            const topCurveHeight = size * 0.3;
+            ctx.moveTo(0, topCurveHeight);
+            ctx.bezierCurveTo(0, 0, -size / 2, 0, -size / 2, topCurveHeight);
+            ctx.bezierCurveTo(-size / 2, (size + topCurveHeight) / 2, 0, (size + topCurveHeight) / 1.4, 0, size);
+            ctx.bezierCurveTo(0, (size + topCurveHeight) / 1.4, size / 2, (size + topCurveHeight) / 2, size / 2, topCurveHeight);
+            ctx.bezierCurveTo(size / 2, 0, 0, 0, 0, topCurveHeight);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function initCanvasParticles() {
+            resizeCanvas();
+            const petalCount = window.innerWidth < 640 ? 28 : 48;
+            for (let i = 0; i < petalCount; i++) {
+                ambientPetals.push(new VelvetPetal(true));
+            }
+            for (let i = 0; i < 40; i++) {
+                sparkles.push(new GoldSparkle());
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, cw, ch);
+
+            for (let i = 0; i < sparkles.length; i++) {
+                sparkles[i].update();
+                sparkles[i].draw();
+            }
+
+            for (let i = 0; i < ambientPetals.length; i++) {
+                ambientPetals[i].update();
+                ambientPetals[i].draw();
+            }
+
+            for (let i = burstParticles.length - 1; i >= 0; i--) {
+                const p = burstParticles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += p.gravity;
+                p.vx *= 0.99;
+                p.rot += p.rotSpeed;
+                p.alpha -= p.decay;
+
+                if (p.alpha <= 0) {
+                    burstParticles.splice(i, 1);
+                    continue;
+                }
+
+                if (p.isHeart) {
+                    drawMiniHeart(p.x, p.y, p.size, p.rot, p.color, p.alpha);
+                } else {
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rot);
+                    ctx.globalAlpha = p.alpha;
+                    const s = p.size;
+                    ctx.beginPath();
+                    ctx.moveTo(0, s * 0.65);
+                    ctx.bezierCurveTo(-s * 0.8, s * 0.15, -s * 0.75, -s * 0.8, 0, -s * 0.4);
+                    ctx.bezierCurveTo(s * 0.75, -s * 0.8, s * 0.8, s * 0.15, 0, s * 0.65);
+                    ctx.fillStyle = p.color;
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        // Mouse / Touch trail spawns tiny rose petals & sparkles
+        let lastTrailTime = 0;
+        function handlePointerMove(x, y) {
+            const now = performance.now();
+            if (now - lastTrailTime > 55) {
+                lastTrailTime = now;
+                spawnPetalBurst(x, y, 2);
+            }
+        }
+        window.addEventListener('mousemove', (e) => handlePointerMove(e.clientX, e.clientY));
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches && e.touches[0]) {
+                handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        /********************************************************************
+         * 6. WEB AUDIO API ROMANTIC MUSIC BOX SYNTHESIZER (100% OFFLINE)
+         ********************************************************************/
+        let audioCtx = null;
+        let isMusicPlaying = false;
+        let userMutedMusic = false;
+        let melodyInterval = null;
+
+        // Romantic Music Box Melody (Arpeggiated Love Theme in F Major / D Minor)
+        const MELODY_NOTES = [
+            { freq: 523.25, dur: 0.45 }, // C5
+            { freq: 659.25, dur: 0.45 }, // E5
+            { freq: 698.46, dur: 0.45 }, // F5
+            { freq: 880.00, dur: 0.90 }, // A5
+            { freq: 783.99, dur: 0.45 }, // G5
+            { freq: 698.46, dur: 0.45 }, // F5
+            { freq: 659.25, dur: 0.90 }, // E5
+            { freq: 587.33, dur: 0.45 }, // D5
+            { freq: 698.46, dur: 0.45 }, // F5
+            { freq: 880.00, dur: 0.45 }, // A5
+            { freq: 1046.50, dur: 0.90 }, // C6
+            { freq: 987.77, dur: 0.45 }, // B5
+            { freq: 880.00, dur: 0.45 }, // A5
+            { freq: 783.99, dur: 0.90 }, // G5
+            { freq: 698.46, dur: 0.45 }, // F5
+            { freq: 659.25, dur: 0.45 }, // E5
+            { freq: 587.33, dur: 0.45 }, // D5
+            { freq: 523.25, dur: 0.95 }  // C5
+        ];
+        let noteIdx = 0;
+
+        function ensureAudioContext() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) {
+                    audioCtx = new AudioContextClass();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playMusicBoxNote(freq, duration = 0.6) {
+            if (!audioCtx || !isMusicPlaying) return;
+            const now = audioCtx.currentTime;
+
+            const osc = audioCtx.createOscillator();
+            const overtone = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now);
+
+            overtone.type = 'triangle';
+            overtone.frequency.setValueAtTime(freq * 2, now);
+
+            gain.gain.setValueAtTime(0.001, now);
+            gain.gain.exponentialRampToValueAtTime(0.085, now + 0.025);
+            gain.gain.exponentialRampToValueAtTime(0.0008, now + duration + 0.7);
+
+            const overtoneGain = audioCtx.createGain();
+            overtoneGain.gain.setValueAtTime(0.018, now);
+            overtoneGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+
+            osc.connect(gain);
+            overtone.connect(overtoneGain);
+            overtoneGain.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start(now);
+            overtone.start(now);
+            osc.stop(now + duration + 0.75);
+            overtone.stop(now + duration + 0.75);
+        }
+
+        function playChimeFlourish() {
+            ensureAudioContext();
+            if (!audioCtx) return;
+            const chimeFreqs = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+            chimeFreqs.forEach((f, idx) => {
+                setTimeout(() => {
+                    if (!audioCtx) return;
+                    const now = audioCtx.currentTime;
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(f, now);
+                    gain.gain.setValueAtTime(0.001, now);
+                    gain.gain.exponentialRampToValueAtTime(0.06, now + 0.02);
+                    gain.gain.exponentialRampToValueAtTime(0.0005, now + 0.9);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.95);
+                }, idx * 75);
+            });
+        }
+
+        function startRomanticMusic() {
+            ensureAudioContext();
+            if (!audioCtx) return;
+            isMusicPlaying = true;
+            document.getElementById('music-icon').textContent = '🎵';
+            document.getElementById('music-label').textContent = 'Đang phát nhạc';
+
+            if (melodyInterval) clearInterval(melodyInterval);
+            melodyInterval = setInterval(() => {
+                if (!isMusicPlaying) return;
+                const item = MELODY_NOTES[noteIdx % MELODY_NOTES.length];
+                playMusicBoxNote(item.freq, item.dur);
+                noteIdx++;
+            }, 520);
+        }
+
+        function stopRomanticMusic() {
+            isMusicPlaying = false;
+            if (melodyInterval) clearInterval(melodyInterval);
+            document.getElementById('music-icon').textContent = '🔇';
+            document.getElementById('music-label').textContent = 'Nhạc nền';
+        }
+
+        function toggleRomanticMusic() {
+            if (isMusicPlaying) {
+                userMutedMusic = true;
+                stopRomanticMusic();
+            } else {
+                userMutedMusic = false;
+                startRomanticMusic();
+            }
+        }
+
+        /********************************************************************
+         * 7. INITIALIZATION & RESPONSIVE RESIZE HANDLER
+         ********************************************************************/
+        let resizeTimeout = null;
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                generateViewportRoseBorder();
+                generateCentralRoseWreath();
+            }, 220);
+        });
+
+        window.onload = function () {
+            loadCardDataFromUrlOrStorage();
+            generateViewportRoseBorder();
+            generateCentralRoseWreath();
+            initCanvasParticles();
+            animateCanvas();
+        };
+    </script>
+</body>
+
+</html>
